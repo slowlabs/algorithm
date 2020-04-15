@@ -15,14 +15,13 @@ import java.util.Map;
 public class DockerController {
     static Log log = LogFactory.getLog(DockerController.class);
 
+
     @RequestMapping("/")
     public String index(HttpServletRequest request) {
         List<String> list = new ArrayList<>();
         list.add("1");
         try {
             System.out.println("tesing");
-            Thread.sleep(1000000);
-            DockerController.class.getClassLoader().loadClass("");
         } catch (Exception e) {
             e.printStackTrace();
         }

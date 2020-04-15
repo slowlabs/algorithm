@@ -1,7 +1,6 @@
 package com.man1s.algorithm.algorithm.thread;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
 
 public class Completable {
     public static void main(String[] args) {
