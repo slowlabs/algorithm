@@ -1,10 +1,18 @@
 package com.man1s.algorithm.algorithm.thread;
 
+import io.netty.util.internal.ConcurrentSet;
+import lombok.Data;
+
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 public class MultiPrint {
 
     public static void main(String[] args) {
 
-         Data data = new Data(1);
+        LockData data = new LockData(1);
          new Thread(new Print(data)).start();
          new Thread(new Print(data)).start();
          new Thread(new Print(data)).start();
@@ -16,9 +24,9 @@ public class MultiPrint {
 }
 class Print implements Runnable{
 
-    Data data;
+    LockData data;
 
-    public Print(Data data) {
+    public Print(LockData data) {
         this.data = data;
     }
 
@@ -29,36 +37,26 @@ class Print implements Runnable{
             if (lock==0){
                 data.setLock(lock+1);
                 int num = data.getNum();
-                System.out.println(num++);
+                System.out.println(Thread.currentThread().getName()+ "/name."+ num++);
                 data.setNum(num);
+                Map<Integer, Integer> set = data.getSet();
+                if(set.containsKey(num)){
+                    System.out.println("error,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,..................");
+                }
+                set.put(num,0);
                 data.setLock(lock);
             }
         }
     }
 }
 
-class Data{
-    private int num;
+@Data
+class LockData{
+    private volatile int num;
+    private Map<Integer,Integer> set = new ConcurrentHashMap<>();
+    private volatile int lock = 0;
 
-    private  int lock = 0;
-
-    public Data(int num) {
+    public LockData(int num) {
         this.num = num;
-    }
-
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
-    }
-
-    public int getLock() {
-        return lock;
-    }
-
-    public void setLock(int lock) {
-        this.lock = lock;
     }
 }
