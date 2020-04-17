@@ -1,15 +1,12 @@
-package com.man1s.algorithm;
+package com.man1s.algorithm.controller;
 
-import com.man1s.algorithm.algorithm.thread.ThreadPool;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class DockerController {

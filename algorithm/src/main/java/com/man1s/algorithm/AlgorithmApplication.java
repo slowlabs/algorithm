@@ -1,4 +1,4 @@
-package com.man1s.algorithm.controller;
+package com.man1s.algorithm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
