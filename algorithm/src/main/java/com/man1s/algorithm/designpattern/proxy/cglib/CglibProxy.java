@@ -1,6 +1,7 @@
 package com.man1s.algorithm.designpattern.proxy.cglib;
 
 
+import org.springframework.cglib.core.DebuggingClassWriter;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
@@ -12,11 +13,13 @@ public class CglibProxy {
 
 
     public static void main(String[] args) throws Exception{
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
+        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "E:\\class\\cglib");
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(TestBean.class);
         enhancer.setCallback(new TestBeanInteceptor());
         Object o = enhancer.create();
-        TestBean.class.cast(o).bean();
+        TestBean.class.cast(o).bean("时间管理");
         while (true){
             Thread.sleep(100);
         }
@@ -25,8 +28,8 @@ public class CglibProxy {
 
 class TestBean{
 
-    public void bean(){
-        System.out.println("我是自己的"+this.getClass().getName());
+    public void bean(String name){
+        System.out.println("我是自己的"+name);
     }
 
 }

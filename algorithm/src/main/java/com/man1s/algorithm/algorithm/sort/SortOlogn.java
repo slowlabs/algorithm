@@ -68,7 +68,7 @@ public class SortOlogn {
 
     public static void main(String[] args) {
         int [] arr  =  {2,1,4,8,5,4,3};
-        quickSort(arr,0,arr.length-1);
+        mapReduceSort(arr,0,arr.length-1);
         for (int i : arr) {
             System.out.println(i);
         }
